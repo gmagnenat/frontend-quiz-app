@@ -2,7 +2,6 @@ import { renderQuizSelection } from "./renderQuizSelection";
 import { renderQuizQuestions } from "./renderQuizQuestions";
 import { renderResults } from "./renderResults";
 import { getCurrentView } from "../state/state";
-import { getCurrentQuiz } from "../state/state";
 
 export function renderApp() {
   switch (getCurrentView()) {
