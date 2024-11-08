@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mentor | Frontend quiz app</title>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Frontend quiz app</title>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./scss/main.scss" />
 
-  <!-- Quiz menu start -->
+    <script src="app.ts" defer type="module"></script>
+  </head>
+  <body>
+    <!-- Quiz menu start -->
+    <main></main>
 
-  Welcome to the Frontend Quiz!
-  Pick a subject to get started.
+    <template id="select-page-template">
+      <div class="select-page">
+        <div>
+          <h1 class="select-page__heading">
+            Welcome to the <strong>Frontend Quiz!</strong>
+          </h1>
+          <p class="select-page__description">Pick a subject to get started.</p>
+        </div>
+        <div>
+          <ul class="select-page__topics">
+            <li class="select-page__topic-item">
+              <a class="quizz-link" href="/html">HTML</a>
+            </li>
+            <li class="select-page__topic-item">
+              <a class="quizz-link" href="/css">CSS</a>
+            </li>
+            <li class="select-page__topic-item">
+              <a class="quizz-link" href="/javascript">JavaScript</a>
+            </li>
+            <li class="select-page__topic-item">
+              <a class="quizz-link" href="/a11y">Accessibility</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </template>
 
-  HTML
-  CSS
-  JavaScript
-  Accessibility
+    <template id="quizz-page-template">
+      <div class="quizz-page">
+        <div class="quizz__theme">
+          <h1 class="quizz__theme-title"></h1>
+          <img class="quizz__theme-icon" src="" alt="" />
+        </div>
+        <h2 class="quizz__question"></h2>
+        <form class="quizz__options"></form>
+      </div>
+    </template>
 
-  <!-- Quiz menu end -->
+    <template id="summary-page-template">
+      <div>
+        <h2>Summary</h2>
+      </div>
+    </template>
 
-  <!-- Quiz question start -->
-
-  Question <!-- number --> of 10
-
-  A
-  B
-  C
-  D
-
-  Submit answer
-
-  <!-- Quiz question end -->
-
-  <!-- Quiz completed start -->
-
-  Quiz completed
-  You scored...
-
-  <!-- score --> out of 10
-
-  <!-- Quiz completed end -->
-
-</body>
+    <footer>
+      <h2>Back to start</h2>
+      <a class="restart-link" href="/">restart</a>
+    </footer>
+  </body>
 </html>

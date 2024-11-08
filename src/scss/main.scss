@@ -1,0 +1,16 @@
+@use "./reset" as *;
+
+.select-page__heading {
+  font-size: 4rem;
+  font-weight: normal;
+}
+
+.error {
+  border: 2px solid red;
+}
+.show-correct {
+  border: 2px solid blue;
+}
+.correct {
+  border: 2px solid green;
+}
