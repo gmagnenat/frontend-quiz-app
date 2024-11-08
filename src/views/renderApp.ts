@@ -1,11 +1,10 @@
-export let currentView: string = "selection";
-export let currentQuiz: string | null = null;
 import { renderQuizSelection } from "./renderQuizSelection";
 import { renderQuizQuestions } from "./renderQuizQuestions";
 import { renderResults } from "./renderResults";
+import { getCurrentView } from "../state/state";
 
 export function renderApp() {
-  switch (currentView) {
+  switch (getCurrentView()) {
     case "selection":
       renderQuizSelection();
       break;
