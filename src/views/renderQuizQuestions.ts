@@ -112,7 +112,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const correctAnswerIndex = question.options.indexOf(correctAnswer);
     const correctAnswerElement = fieldset.children[correctAnswerIndex];
     const correctIcon = document.createElement("img");
-    correctIcon.src = "../../public/assets/images/icon-correct.svg";
+    correctIcon.src = "./assets/images/icon-correct.svg";
     correctIcon.alt = "";
     correctAnswerElement.appendChild(correctIcon);
     correctAnswerElement.classList.add("correct");
@@ -122,7 +122,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
       const selectedAnswerIndex = question.options.indexOf(selectedOption);
       const selectedAnswerElement = fieldset.children[selectedAnswerIndex];
       const incorrectIcon = document.createElement("img");
-      incorrectIcon.src = "../../public/assets/images/icon-incorrect.svg";
+      incorrectIcon.src = "./assets/images/icon-incorrect.svg";
       incorrectIcon.alt = "";
       selectedAnswerElement.appendChild(incorrectIcon);
       selectedAnswerElement.classList.add("incorrect");
