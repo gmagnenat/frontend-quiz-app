@@ -22,7 +22,7 @@ export function renderQuizSelection(): void {
 
     const titleColumn = `
       <div>
-        <h1 class="selection__title">Welcome to the <span>Frontend Quiz!</span></h1>
+        <h1 class="selection__title">Welcome to the<br /><span>Frontend Quiz!</span></h1>
         <p class="quiz-selection__description">Pick a subject to get started.</p>
       </div>
     `;

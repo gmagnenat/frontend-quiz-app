@@ -20,6 +20,9 @@ export function renderResults(): void {
 
     const quiz = getCurrentQuiz();
 
+    const resultsScoreColumn = document.createElement("div");
+    resultsScoreColumn.classList.add("results__column");
+
     const scoreContainer = document.createElement("div");
     scoreContainer.classList.add("results__score");
 
@@ -32,8 +35,7 @@ export function renderResults(): void {
     themeTitle.classList.add("results__score-title");
     themeIcon.classList.add("results__score-icon");
     themeIcon.dataset.theme = quiz?.title?.toLowerCase() || "accessibility";
-    themeIcon.src =
-      quiz?.icon || "../../public/assets/images/icon-accessibility.svg";
+    themeIcon.src = quiz?.icon || "./assets/images/icon-accessibility.svg";
     themeIcon.alt = "";
 
     themeTitle.textContent = quiz?.title || "Accessibility";
@@ -55,15 +57,17 @@ export function renderResults(): void {
 
     const restartButton = document.createElement("button");
     restartButton.classList.add("results__restart");
-    restartButton.textContent = "Restart Quiz";
+    restartButton.textContent = "Play Again";
 
     restartButton.addEventListener("click", () => {
       setCurrentQuiz(undefined);
       setCurrentView("selection");
     });
 
+    resultsScoreColumn.appendChild(scoreContainer);
+
     container.innerHTML += titleColumn;
-    container.appendChild(scoreContainer);
-    container.appendChild(restartButton);
+    resultsScoreColumn.appendChild(restartButton);
+    container.appendChild(resultsScoreColumn);
   }
 }

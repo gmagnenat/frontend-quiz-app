@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "./reset" as *;
 @use "./variables" as *;
 @use "./mixins" as *;
@@ -9,7 +10,6 @@
 body {
   background: $clr-base-100;
   font-family: $ff;
-  padding: 1.5rem;
   font-size: 1.125rem;
 }
 
@@ -17,12 +17,17 @@ main {
   width: 100%;
 }
 
+.wrapper {
+  padding: 1.5rem;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
-  padding-block: 1rem;
+  min-height: 6rem;
+  margin-bottom: 3rem;
 }
 
 .app-title {
@@ -60,7 +65,7 @@ main {
 }
 
 .app-container {
-  margin-top: 4rem;
+  // margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -147,6 +152,7 @@ main {
 
 .question__heading {
   font-size: 2.25rem;
+  font-weight: 500;
 }
 
 .quiz-selection__description {
@@ -163,10 +169,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.question__form {
-  margin-top: 2.5rem;
 }
 
 fieldset {
@@ -282,6 +284,11 @@ input[type="radio"] {
   justify-content: center;
   background: $clr-purple;
   color: white;
+  transition: background 0.2s;
+
+  &:hover {
+    background: color.adjust($clr-purple, $lightness: 20%);
+  }
 }
 
 .error {
@@ -296,7 +303,7 @@ input[type="radio"] {
   justify-content: center;
 
   &::before {
-    content: url("../../public/assets/images/icon-error.svg");
+    content: url("./assets/images/icon-error.svg");
     height: 2.5rem;
     height: 2.5rem;
   }
@@ -304,6 +311,17 @@ input[type="radio"] {
 
 form:has(input[type="radio"]:checked) .error {
   display: none;
+}
+
+.question__list:has(.incorrect) {
+  .correct {
+    border-color: transparent;
+
+    .question__label-indicator {
+      background: #f4f6fa;
+      color: unset;
+    }
+  }
 }
 
 .correct {
@@ -327,6 +345,12 @@ form:has(input[type="radio"]:checked) .error {
 /*******************************
  * Results
  *******************************/
+.results__column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .results__score {
   background: white;
   display: flex;
@@ -346,9 +370,6 @@ form:has(input[type="radio"]:checked) .error {
   gap: 1rem;
 }
 
-.results__score-icon {
-}
-
 .results__score-text {
   font-size: 5.5rem;
   font-weight: 700;
@@ -362,6 +383,11 @@ form:has(input[type="radio"]:checked) .error {
   padding: 1rem;
   border-radius: 0.8rem;
   cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: color.adjust($clr-purple, $lightness: 20%);
+  }
 }
 
 /*******************************
