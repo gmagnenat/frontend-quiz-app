@@ -22,17 +22,20 @@
     <script src="app.ts" defer type="module"></script>
   </head>
   <body>
-    <!-- Quiz menu start -->
-    <main>
-      <div class="hero">
-        <div>
-          <h1 class="hero__heading">
-            Welcome to the <span>Frontend Quiz!</span>
-          </h1>
-          <p class="hero__description">Pick a subject to get started.</p>
+    <div class="wrapper">
+      <header class="header">
+        <div class="app-title"></div>
+        <div class="toggle">
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <span class="toggle-text"></span>
         </div>
-        <div class="hero__quiz-container" aria-live="assertive"></div>
-      </div>
-    </main>
+      </header>
+      <main>
+        <div class="app-container"></div>
+      </main>
+    </div>
   </body>
 </html>
