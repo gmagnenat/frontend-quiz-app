@@ -256,10 +256,6 @@ input[type="radio"] {
   }
 }
 
-.quiz__label {
-  text-transform: uppercase;
-}
-
 .form-group:has(input[type="radio"]:focus) {
   border: 2px solid $clr-purple;
 
@@ -267,6 +263,11 @@ input[type="radio"] {
     background: $clr-purple;
     color: white;
   }
+}
+
+.form-group:has(input:not(:checked):not(:disabled)):hover
+  .question__label-indicator {
+  background: rgb($clr-purple, 0.1);
 }
 
 .question__submit {
