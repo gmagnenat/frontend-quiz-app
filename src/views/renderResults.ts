@@ -35,7 +35,7 @@ export function renderResults(): void {
     themeTitle.classList.add("results__score-title");
     themeIcon.classList.add("results__score-icon");
     themeIcon.dataset.theme = quiz?.title?.toLowerCase() || "accessibility";
-    themeIcon.src = quiz?.icon || "./assets/images/icon-accessibility.svg";
+    themeIcon.src = quiz?.icon || "/assets/images/icon-accessibility.svg";
     themeIcon.alt = "";
 
     themeTitle.textContent = quiz?.title || "Accessibility";
@@ -50,6 +50,7 @@ export function renderResults(): void {
     scoreNum.textContent = `${currentScore}`;
 
     const scoreInfo = document.createElement("p");
+    scoreInfo.classList.add("results__score-info");
     scoreInfo.textContent = `out of ${quiz?.questions.length || 10}`;
 
     scoreContainer.appendChild(scoreNum);

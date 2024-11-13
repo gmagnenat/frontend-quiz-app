@@ -25,12 +25,25 @@
     <div class="wrapper">
       <header class="header">
         <div class="app-title"></div>
-        <div class="toggle">
-          <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
-          </label>
-          <span class="toggle-text"></span>
+        <div class="theme-toggle">
+          <input
+            type="radio"
+            id="light-mode"
+            name="theme"
+            value="light"
+            aria-label="Light theme"
+            checked
+          />
+          <label for="light-mode">Light</label>
+
+          <input
+            type="radio"
+            id="dark-mode"
+            name="theme"
+            value="dark"
+            aria-label="Dark theme"
+          />
+          <label for="dark-mode">Dark</label>
         </div>
       </header>
       <main>

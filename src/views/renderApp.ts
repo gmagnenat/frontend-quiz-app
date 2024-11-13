@@ -16,6 +16,8 @@ export function renderApp(): void {
       break;
     case "quiz":
       renderQuizQuestions();
+      const toFocus = document.querySelector(".quiz__info") as HTMLElement;
+      if (toFocus) toFocus.focus();
       break;
     case "result":
       renderResults();

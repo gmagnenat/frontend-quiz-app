@@ -1,0 +1,25 @@
+@use "./variables" as *;
+
+@mixin theme($theme) {
+  @if $theme == light {
+    --background-color: #{$clr-base-200};
+    --text-color: #{$clr-base-800};
+    --text-faded: #{$clr-base-700};
+    --base-100: #{$clr-base-100};
+    --base-200: #{$clr-base-200};
+    --base-700: #{$clr-base-700};
+    --base-800: #{$clr-base-800};
+    --base-900: #{$clr-base-900};
+    --shadow: 0 1rem 2.5rem 0 rgba(143, 160, 193, 0.14);
+  } @else if $theme == dark {
+    --background-color: #{$clr-base-900};
+    --text-color: #{$clr-base-100};
+    --text-faded: #{$clr-blue-100};
+    --base-100: #{$clr-base-800};
+    --base-200: #{$clr-base-200};
+    --base-700: #{$clr-base-700};
+    --base-800: #{$clr-base-800};
+    --base-900: #{$clr-base-900};
+    --shadow: 0 1rem 2.5rem 0 rgba(49, 62, 81, 0.14);
+  }
+}
