@@ -4,6 +4,7 @@ import {
   setCurrentScore,
   getCurrentScore,
 } from "../state/state";
+import { renderApp } from "./renderApp";
 
 export function renderQuizQuestions(currentIndex: number = 0): void {
   const quiz = getCurrentQuiz();
@@ -25,10 +26,10 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
   questionHeading.textContent = question.question;
 
   const infoColumn = `
-    <div class="quiz__info" tabindex="-1">
-      <p class="quiz__progress-text">Question ${currentIndex + 1} of ${
-    quiz.questions.length
-  }</p>
+    <div class="quiz__info">
+      <p class="quiz__progress-text" tabindex="-1">Question ${
+        currentIndex + 1
+      } of ${quiz.questions.length}</p>
       ${questionHeading.outerHTML}
 
       <progress class="question__progress" value="${currentIndex + 1}" max="${
@@ -80,10 +81,11 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
   submitButton.textContent = "Submit Answer";
   form.appendChild(submitButton);
 
-  const errorMessage = document.createElement("p");
-  errorMessage.className = "error";
+  const errorMessage = document.createElement("div");
+  errorMessage.className = "error sr-only";
   errorMessage.ariaLive = "assertive";
   errorMessage.textContent = "Please select an option";
+  form.appendChild(errorMessage);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -106,6 +108,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const radioButtons = fieldset.querySelectorAll("input");
     radioButtons.forEach((radio) => {
       radio.disabled = true;
+      radio.ariaDisabled = "true";
     });
 
     // highlight correct answer in green
@@ -128,11 +131,21 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
       selectedAnswerElement.classList.add("incorrect");
     }
 
+    // set message for screen readers
+    const message = isCorrect
+      ? "You answered correctly!"
+      : `You answered incorrectly. The correct answer is: ${correctAnswer}`;
+    errorMessage.textContent = message;
+
     submitButton.textContent = "Next Question";
     submitButton.classList.add("next-button");
     submitButton.onclick = () => {
       if (currentIndex + 1 < quiz.questions.length) {
         renderQuizQuestions(currentIndex + 1);
+        const toFocus = document.querySelector(
+          ".quiz__progress-text"
+        ) as HTMLElement;
+        toFocus.focus();
       } else {
         setCurrentView("result");
       }

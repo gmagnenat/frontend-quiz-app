@@ -329,7 +329,7 @@ input[type="radio"] {
 }
 
 form:has(input[type="radio"]:checked) .error {
-  display: none;
+  opacity: 0;
 }
 
 .question__list:has(.incorrect) {
@@ -413,6 +413,18 @@ form:has(input[type="radio"]:checked) .error {
   }
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /*******************************
  * Components
  *******************************/
@@ -457,19 +469,22 @@ progress[value]::-moz-progress-bar {
 .theme-toggle {
   display: flex;
   align-items: center;
-  background-color: #ccc;
+  background: var(--base-100);
   padding: 5px;
   border-radius: 25px;
   width: 11rem;
   justify-content: space-between;
+  box-shadow: var(--shadow);
 }
 
 .theme-toggle input[type="radio"] {
-  appearance: none; /* Hide actual radio buttons */
+  appearance: none;
 }
 
 .theme-toggle label {
   flex: 1;
+  font-weight: 700;
+  color: var(--text-color);
   text-align: center;
   cursor: pointer;
   padding: 8px 12px;
@@ -480,6 +495,7 @@ progress[value]::-moz-progress-bar {
 .theme-toggle input[type="radio"]:checked + label {
   background-color: #2196f3;
   color: white;
+  font-weight: 700;
 }
 
 @media screen and (min-width: 50rem) {

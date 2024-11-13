@@ -16,6 +16,9 @@ export function renderQuizSelection(): void {
   if (container) {
     container.innerHTML = "";
 
+    const topTitle = document.querySelector(".app-title h1");
+    topTitle?.remove();
+
     const pageTitle = document.createElement("h1");
     pageTitle.classList.add("hero__title");
     pageTitle.innerHTML = "Select a Quiz";
