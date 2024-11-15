@@ -17,9 +17,9 @@ export function renderApp(): void {
     case "quiz":
       renderQuizQuestions();
       const toFocus = document.querySelector(
-        ".quiz__progress-text"
-      ) as HTMLElement;
-      if (toFocus) toFocus.focus();
+        ".question__form"
+      ) as HTMLFormElement;
+      toFocus.focus();
       break;
     case "result":
       renderResults();
