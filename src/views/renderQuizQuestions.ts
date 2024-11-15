@@ -20,14 +20,17 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
   const question = quiz.questions[currentIndex];
   const form = document.createElement("form");
   form.classList.add("question__form");
+  form.setAttribute("aria-labelledby", "question-number question-text");
+  form.setAttribute("tabindex", "-1");
 
   const questionHeading = document.createElement("h1");
   questionHeading.classList.add("question__heading");
+  questionHeading.id = "question-text";
   questionHeading.textContent = question.question;
 
   const infoColumn = `
     <div class="quiz__info">
-      <p class="quiz__progress-text" tabindex="-1">Question ${
+      <p id="question-number" class="quiz__progress-text">Question ${
         currentIndex + 1
       } of ${quiz.questions.length}</p>
       ${questionHeading.outerHTML}
@@ -44,6 +47,11 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
   fieldset.className = "question__list";
   fieldset.role = "radiogroup";
 
+  const fieldsetLegend = document.createElement("legend");
+  fieldsetLegend.classList.add("sr-only");
+  fieldsetLegend.textContent = "Options for answers";
+  fieldset.appendChild(fieldsetLegend);
+
   question.options.forEach((option, index) => {
     const formGroup = document.createElement("div");
     formGroup.classList.add("form-group");
@@ -55,7 +63,10 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const labelIndicator = ["A", "B", "C", "D"];
     const labelIndicatorElement = document.createElement("strong");
     labelIndicatorElement.classList.add("question__label-indicator");
+    labelIndicatorElement.setAttribute("aria-hidden", "true");
     labelIndicatorElement.textContent = labelIndicator[index];
+
+    radio.setAttribute("aria-label", `Option ${labelIndicator[index]}`);
 
     radio.classList.add("question__item");
     radio.type = "radio";
@@ -113,7 +124,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
 
     // highlight correct answer in green
     const correctAnswerIndex = question.options.indexOf(correctAnswer);
-    const correctAnswerElement = fieldset.children[correctAnswerIndex];
+    const correctAnswerElement = fieldset.children[correctAnswerIndex + 1];
     const correctIcon = document.createElement("img");
     correctIcon.src = "/assets/images/icon-correct.svg";
     correctIcon.alt = "";
@@ -123,7 +134,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     // highlight selected answer in red if incorrect
     if (!isCorrect) {
       const selectedAnswerIndex = question.options.indexOf(selectedOption);
-      const selectedAnswerElement = fieldset.children[selectedAnswerIndex];
+      const selectedAnswerElement = fieldset.children[selectedAnswerIndex + 1];
       const incorrectIcon = document.createElement("img");
       incorrectIcon.src = "/assets/images/icon-incorrect.svg";
       incorrectIcon.alt = "";
@@ -142,10 +153,10 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     submitButton.onclick = () => {
       if (currentIndex + 1 < quiz.questions.length) {
         renderQuizQuestions(currentIndex + 1);
-        const toFocus = document.querySelector(
-          ".quiz__progress-text"
-        ) as HTMLElement;
-        toFocus.focus();
+        const form = document.querySelector(
+          ".question__form"
+        ) as HTMLFormElement;
+        form.focus();
       } else {
         setCurrentView("result");
       }
