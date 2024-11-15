@@ -43,11 +43,11 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
 
   if (container) container.innerHTML += infoColumn;
 
-  const fieldset = document.createElement("fieldset");
+  const fieldset: HTMLFieldSetElement = document.createElement("fieldset");
   fieldset.className = "question__list";
   fieldset.role = "radiogroup";
 
-  const fieldsetLegend = document.createElement("legend");
+  const fieldsetLegend: HTMLLegendElement = document.createElement("legend");
   fieldsetLegend.classList.add("sr-only");
   fieldsetLegend.textContent = "Options for answers";
   fieldset.appendChild(fieldsetLegend);
@@ -60,13 +60,10 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const label = document.createElement("label");
     label.classList.add("question__label");
 
-    const labelIndicator = ["A", "B", "C", "D"];
+    const labelIndicator: string[] = ["A", "B", "C", "D"];
     const labelIndicatorElement = document.createElement("strong");
     labelIndicatorElement.classList.add("question__label-indicator");
-    labelIndicatorElement.setAttribute("aria-hidden", "true");
-    labelIndicatorElement.textContent = labelIndicator[index];
-
-    radio.setAttribute("aria-label", `Option ${labelIndicator[index]}`);
+    labelIndicatorElement.innerHTML = `${labelIndicator[index]}<span class="sr-only"> - </span>`;
 
     radio.classList.add("question__item");
     radio.type = "radio";
