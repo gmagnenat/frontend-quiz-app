@@ -119,7 +119,12 @@ main {
 }
 
 .selection__links-item:focus-within {
-  border: 2px solid $clr-purple;
+  outline: 2px solid $clr-purple;
+  outline-offset: 4px;
+}
+
+.question__form:focus {
+  outline: transparent;
 }
 
 .selection__link-img {
@@ -278,7 +283,9 @@ input[type="radio"] {
 }
 
 .form-group:has(input[type="radio"]:focus) {
-  border: 2px solid $clr-purple;
+  // border: 2px solid $clr-purple;
+  outline: 2px solid $clr-purple;
+  outline-offset: 4px;
 
   .question__label-indicator {
     background: $clr-purple;
@@ -308,6 +315,11 @@ input[type="radio"] {
   &:hover {
     background: color.adjust($clr-purple, $lightness: 20%);
   }
+}
+
+.question__submit:focus {
+  outline: 2px solid $clr-purple;
+  outline-offset: 4px;
 }
 
 .error {
@@ -344,7 +356,8 @@ form:has(input[type="radio"]:checked) .error {
 }
 
 .correct {
-  border: 2px solid $clr-green;
+  outline: 2px solid $clr-green;
+  outline-offset: 4px;
 
   .question__label-indicator {
     background: $clr-green;
@@ -353,7 +366,8 @@ form:has(input[type="radio"]:checked) .error {
 }
 
 .incorrect {
-  border: 2px solid $clr-red;
+  outline: 2px solid $clr-red;
+  outline-offset: 4px;
 
   .question__label-indicator {
     background: $clr-red;
@@ -475,6 +489,11 @@ progress[value]::-moz-progress-bar {
   width: 11rem;
   justify-content: space-between;
   box-shadow: var(--shadow);
+}
+
+.theme-toggle:focus-within {
+  outline: 3px solid $clr-purple;
+  outline-offset: 4px;
 }
 
 .theme-toggle input[type="radio"] {
