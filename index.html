@@ -26,15 +26,17 @@
         <div class="theme-toggle">
           <fieldset role="radiogroup">
             <legend id="themelabel" class="sr-only">Theme switcher</legend>
-            <label for="light-mode">Light</label>
-            <span>
+            <label class="light-mode-label" for="light-mode"
+              ><span class="sr-only">Light</span></label
+            >
+            <span class="toggle-custom-radio">
               <input
                 type="radio"
                 id="light-mode"
                 name="theme"
                 value="light"
                 aria-describedby="themelabel"
-                checked
+                checked="checked"
               />
               <input
                 type="radio"
@@ -43,8 +45,20 @@
                 value="dark"
                 aria-describedby="themelabel"
               />
+              <span
+                role="presentation"
+                aria-hidden="true"
+                class="toggle-background"
+              ></span>
+              <span
+                role="presentation"
+                aria-hidden="true"
+                class="toggle-switcher"
+              ></span>
             </span>
-            <label for="dark-mode">Dark</label>
+            <label class="dark-mode-label" for="dark-mode"
+              ><span class="sr-only">Dark</span></label
+            >
           </fieldset>
         </div>
       </header>

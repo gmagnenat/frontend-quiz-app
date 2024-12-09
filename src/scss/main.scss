@@ -16,7 +16,7 @@
  *******************************/
 
 body {
-  background-color: var(--background-color);
+  background: var(--body-bg);
   color: var(--text-color);
   font-family: $ff;
   font-size: 1.125rem;
@@ -79,9 +79,13 @@ main {
 
 .app-container {
   // margin-top: 4rem;
-  display: flex;
+  display: grid;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.error {
+  order: 1;
 }
 
 /*******************************
@@ -89,7 +93,7 @@ main {
  *******************************/
 
 .selection__title {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, calc(2.5rem + ((1vw - 0.2rem) * 2.5)), 4rem);
   line-height: 1.2;
   font-weight: normal;
 }
@@ -232,8 +236,10 @@ fieldset {
   background: color.adjust($clr-purple, $lightness: 38%);
 }
 
-.quiz__radio {
+.quiz__radio,
+.question__item {
   appearance: none;
+  opacity: 0;
 }
 
 .form-group {
@@ -247,10 +253,10 @@ fieldset {
   position: relative;
 }
 
-input[type="radio"] {
-  appearance: none;
-  opacity: 0;
-}
+// input[type="radio"] {
+//   appearance: none;
+//   opacity: 0;
+// }
 
 .quiz__label,
 .question__label {
@@ -283,7 +289,6 @@ input[type="radio"] {
 }
 
 .form-group:has(input[type="radio"]:focus) {
-  // border: 2px solid $clr-purple;
   outline: 2px solid $clr-purple;
   outline-offset: 4px;
 
@@ -296,6 +301,21 @@ input[type="radio"] {
 .form-group:has(input:not(:checked):not(:disabled)):hover
   .question__label-indicator {
   background: color.adjust($clr-purple, $lightness: 30%);
+}
+
+.form-group:has(input:checked):not(.incorrect):not(.correct) {
+  outline: 2px solid $clr-purple;
+  outline-offset: 4px;
+  .question__label-indicator {
+    background-color: $clr-purple;
+    color: $clr-base-100;
+  }
+}
+
+.question__list:has(.incorrect) {
+  .correct {
+    outline-color: transparent;
+  }
 }
 
 .question__submit {
@@ -481,28 +501,51 @@ progress[value]::-moz-progress-bar {
 }
 
 .theme-toggle {
-  display: flex;
-  align-items: center;
-  background: var(--base-100);
+  // background: var(--base-100);
   padding: 5px;
   border-radius: 25px;
   width: 11rem;
   justify-content: space-between;
-  box-shadow: var(--shadow);
+  // box-shadow: var(--shadow);
 }
 
-.theme-toggle:focus-within {
-  outline: 3px solid $clr-purple;
-  outline-offset: 4px;
+.theme-toggle fieldset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .theme-toggle input[type="radio"] {
-  appearance: none;
+  opacity: 0;
+  z-index: 100;
+  cursor: pointer;
+  width: 50%;
+  height: 100px;
 }
+
+#light-mode,
+#dark-mode {
+  background: transparent;
+}
+
+#dark-mode:checked ~ .toggle-switcher {
+  right: 0;
+  left: 50%;
+}
+
+#light-mode:checked ~ .toggle-switcher {
+  right: 50%;
+  left: 0;
+}
+
+// .theme-toggle input[type="radio"] {
+//   appearance: initial;
+// }
 
 .theme-toggle label {
   flex: 1;
   font-weight: 700;
+  height: 2rem;
   color: var(--text-color);
   text-align: center;
   cursor: pointer;
@@ -511,10 +554,53 @@ progress[value]::-moz-progress-bar {
   transition: background-color 0.3s;
 }
 
-.theme-toggle input[type="radio"]:checked + label {
-  background-color: #2196f3;
-  color: white;
-  font-weight: 700;
+.light-mode-label {
+  background: var(--sun-icon) no-repeat;
+  background-position: left;
+}
+
+.dark-mode-label {
+  background: var(--moon-icon) no-repeat;
+  background-position: right;
+}
+
+.toggle-custom-radio {
+  width: 40%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.toggle-background {
+  position: absolute;
+  transition: all 0.3s ease-out 0s;
+  left: 0;
+  z-index: 0;
+  height: calc(2.5rem - 0.4em);
+  width: calc(4.6rem - 0.4em);
+  background-color: $clr-purple;
+  border-radius: 3em;
+  transition: all 0.15s ease-out;
+}
+
+.toggle-switcher {
+  position: absolute;
+  right: 100%;
+  left: 0;
+  z-index: 1;
+  height: calc(100% - 0.4rem);
+  margin-inline: 0.2rem;
+  width: calc(50% - 0.4rem);
+  background-color: $clr-base-100;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px -1px rgba(23, 23, 23, 0.55);
+  transition: color 0.15s ease-out, right 0.15s ease-out, left 0.15s ease-out;
+}
+
+.toggle-custom-radio input[type="radio"]:focus ~ .toggle-background {
+  outline: 2px solid $clr-purple;
+  outline-offset: 4px;
 }
 
 @media screen and (min-width: 50rem) {

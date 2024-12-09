@@ -11,6 +11,25 @@
     --base-800: #{$clr-base-800};
     --base-900: #{$clr-base-900};
     --shadow: 0 1rem 2.5rem 0 rgba(143, 160, 193, 0.14);
+    --sun-icon: url(../../public/assets/images/icon-sun-dark.svg);
+    --moon-icon: url(../../public/assets/images/icon-moon-dark.svg);
+    --body-bg: url(../../public/assets/images/pattern-background-mobile-light.svg)
+        no-repeat
+        top
+        left,
+      var(--background-color);
+
+    @media screen and (min-width: 40rem) {
+      --body-bg: url(../../public/assets/images/pattern-background-tablet-light.svg)
+          no-repeat top left,
+        var(--background-color);
+    }
+
+    @media screen and (min-width: 64rem) {
+      --body-bg: url(../../public/assets/images/pattern-background-desktop-light.svg)
+          no-repeat top left,
+        var(--background-color);
+    }
   } @else if $theme == dark {
     --background-color: #{$clr-base-900};
     --text-color: #{$clr-base-100};
@@ -21,5 +40,22 @@
     --base-800: #{$clr-base-800};
     --base-900: #{$clr-base-900};
     --shadow: 0 1rem 2.5rem 0 rgba(49, 62, 81, 0.14);
+    --sun-icon: url(../../public/assets/images/icon-sun-light.svg);
+    --moon-icon: url(../../public/assets/images/icon-moon-light.svg);
+    --body-bg: url(../../public/assets/images/pattern-background-mobile-dark.svg)
+      no-repeat
+      top
+      left
+      var(--background-color);
+
+    @media screen and (min-width: 40rem) {
+      --body-bg: url(../../public/assets/images/pattern-background-tablet-dark.svg)
+        no-repeat top left var(--background-color);
+    }
+
+    @media screen and (min-width: 64rem) {
+      --body-bg: url(../../public/assets/images/pattern-background-desktop-dark.svg)
+        no-repeat top left var(--background-color);
+    }
   }
 }
