@@ -145,7 +145,7 @@ main {
   outline-style: none;
 }
 
-.selection__link::after {
+.selection__link::before {
   content: "";
   position: absolute;
   inset: 0;

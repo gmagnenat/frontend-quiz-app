@@ -43,11 +43,11 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
 
   if (container) container.innerHTML += infoColumn;
 
-  const fieldset: HTMLFieldSetElement = document.createElement("fieldset");
+  const fieldset = document.createElement("fieldset");
   fieldset.className = "question__list";
   fieldset.role = "radiogroup";
 
-  const fieldsetLegend: HTMLLegendElement = document.createElement("legend");
+  const fieldsetLegend = document.createElement("legend");
   fieldsetLegend.classList.add("sr-only");
   fieldsetLegend.textContent = "Options for answers";
   fieldset.appendChild(fieldsetLegend);

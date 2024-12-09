@@ -24,24 +24,28 @@
       <header class="header">
         <div class="app-title"></div>
         <div class="theme-toggle">
-          <input
-            type="radio"
-            id="light-mode"
-            name="theme"
-            value="light"
-            aria-label="Light theme"
-            checked
-          />
-          <label for="light-mode">Light</label>
-
-          <input
-            type="radio"
-            id="dark-mode"
-            name="theme"
-            value="dark"
-            aria-label="Dark theme"
-          />
-          <label for="dark-mode">Dark</label>
+          <fieldset role="radiogroup">
+            <legend id="themelabel" class="sr-only">Theme switcher</legend>
+            <label for="light-mode">Light</label>
+            <span>
+              <input
+                type="radio"
+                id="light-mode"
+                name="theme"
+                value="light"
+                aria-describedby="themelabel"
+                checked
+              />
+              <input
+                type="radio"
+                id="dark-mode"
+                name="theme"
+                value="dark"
+                aria-describedby="themelabel"
+              />
+            </span>
+            <label for="dark-mode">Dark</label>
+          </fieldset>
         </div>
       </header>
       <main>
