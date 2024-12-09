@@ -524,8 +524,20 @@ progress[value]::-moz-progress-bar {
   }
   .app-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     margin-inline: auto;
+  }
+
+  .quiz__info {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .question__form {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .error {
+    grid-area: 2 / 2 / 3 / 3;
   }
 
   .question__progress {

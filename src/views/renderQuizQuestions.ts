@@ -41,6 +41,8 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     </div>
   `;
 
+  const formFeedback = document.createElement("div");
+
   if (container) container.innerHTML += infoColumn;
 
   const fieldset = document.createElement("fieldset");
@@ -92,8 +94,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
   const errorMessage = document.createElement("div");
   errorMessage.className = "error sr-only";
   errorMessage.ariaLive = "assertive";
-  errorMessage.textContent = "Please select an option";
-  form.appendChild(errorMessage);
+  container?.appendChild(errorMessage);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -101,7 +102,8 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const selectedOption = form.option.value;
 
     if (!selectedOption) {
-      form.appendChild(errorMessage);
+      errorMessage.textContent = "Please select an answer";
+      errorMessage.classList.remove("sr-only");
       return;
     }
 
@@ -143,6 +145,7 @@ export function renderQuizQuestions(currentIndex: number = 0): void {
     const message = isCorrect
       ? "You answered correctly!"
       : `You answered incorrectly. The correct answer is: ${correctAnswer}`;
+    errorMessage.classList.add("sr-only");
     errorMessage.textContent = message;
 
     submitButton.textContent = "Next Question";
