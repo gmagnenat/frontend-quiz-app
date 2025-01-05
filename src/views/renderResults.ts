@@ -1,9 +1,9 @@
 import { getCurrentQuiz, setCurrentQuiz } from "../state/state";
-import { quizTitleImages } from "../utils/quizTitlesIcons";
 import { getCurrentScore } from "../state/state";
 import { setCurrentView } from "../state/state";
 
 const container = document.querySelector(".app-container");
+const titleWrapper = document.querySelector(".app-title");
 
 /**
  * Display a list of quiz titles as buttons
@@ -61,6 +61,9 @@ export function renderResults(): void {
     restartButton.textContent = "Play Again";
 
     restartButton.addEventListener("click", () => {
+      if (titleWrapper) {
+        titleWrapper.innerHTML = "";
+      }
       setCurrentQuiz(undefined);
       setCurrentView("selection");
     });
