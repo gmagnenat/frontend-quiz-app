@@ -73,7 +73,11 @@ main {
 
   h1 {
     font-weight: normal;
-    font-size: 1.75rem;
+    font-size: clamp(
+      1.125rem,
+      calc(1.125rem + ((1vw - 0.2rem) * 1.0417)),
+      1.75rem
+    );
   }
 }
 
@@ -172,7 +176,7 @@ main {
 }
 
 .question__heading {
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, calc(1.25rem + ((1vw - 0.2rem) * 1.6667)), 2.25rem);
   font-weight: 500;
 }
 
@@ -501,18 +505,14 @@ progress[value]::-moz-progress-bar {
 }
 
 .theme-toggle {
-  // background: var(--base-100);
   padding: 5px;
-  border-radius: 25px;
-  width: 11rem;
-  justify-content: space-between;
-  // box-shadow: var(--shadow);
 }
 
 .theme-toggle fieldset {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 8rem;
 }
 
 .theme-toggle input[type="radio"] {
@@ -520,7 +520,7 @@ progress[value]::-moz-progress-bar {
   z-index: 100;
   cursor: pointer;
   width: 50%;
-  height: 100px;
+  height: 100%;
 }
 
 #light-mode,
@@ -538,20 +538,10 @@ progress[value]::-moz-progress-bar {
   left: 0;
 }
 
-// .theme-toggle input[type="radio"] {
-//   appearance: initial;
-// }
-
 .theme-toggle label {
   flex: 1;
-  font-weight: 700;
   height: 2rem;
-  color: var(--text-color);
-  text-align: center;
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 25px;
-  transition: background-color 0.3s;
 }
 
 .light-mode-label {
@@ -566,7 +556,7 @@ progress[value]::-moz-progress-bar {
 
 .toggle-custom-radio {
   width: 40%;
-  height: 2rem;
+  height: 1.6em;
   display: flex;
   align-items: center;
   position: relative;
@@ -577,8 +567,9 @@ progress[value]::-moz-progress-bar {
   transition: all 0.3s ease-out 0s;
   left: 0;
   z-index: 0;
-  height: calc(2.5rem - 0.4em);
-  width: calc(4.6rem - 0.4em);
+  // height: calc(2.5em - 0.4em);
+  height: 1.6em;
+  width: calc(3.6em - 0.4em);
   background-color: $clr-purple;
   border-radius: 3em;
   transition: all 0.15s ease-out;
@@ -589,9 +580,9 @@ progress[value]::-moz-progress-bar {
   right: 100%;
   left: 0;
   z-index: 1;
-  height: calc(100% - 0.4rem);
-  margin-inline: 0.2rem;
-  width: calc(50% - 0.4rem);
+  height: calc(100% - 0.4em);
+  margin-inline: 0.3em;
+  width: calc(50% - 0.3em);
   background-color: $clr-base-100;
   border-radius: 50%;
   box-shadow: 1px 1px 3px -1px rgba(23, 23, 23, 0.55);
