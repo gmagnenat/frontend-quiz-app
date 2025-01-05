@@ -1,5 +1,12 @@
-import { Quiz, QuizType } from "../types/quizTypes";
+import { Quiz } from "../types/quizTypes";
 import { loadData } from "./loadData";
+
+enum QuizType {
+  HTML = "HTML",
+  CSS = "CSS",
+  JAVASCRIPT = "JavaScript",
+  ACCESSIBILITY = "Accessibility",
+}
 
 /**
  * Select a quiz by title

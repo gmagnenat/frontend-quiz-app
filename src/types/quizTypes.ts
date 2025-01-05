@@ -9,10 +9,3 @@ export interface Question {
   options: string[];
   answer: string;
 }
-
-export enum QuizType {
-  HTML = "HTML",
-  CSS = "CSS",
-  JAVASCRIPT = "JavaScript",
-  ACCESSIBILITY = "Accessibility",
-}
