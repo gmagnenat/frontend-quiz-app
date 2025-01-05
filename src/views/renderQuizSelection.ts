@@ -1,9 +1,4 @@
-import {
-  getCurrentQuiz,
-  getCurrentView,
-  setCurrentQuiz,
-  setCurrentView,
-} from "../state/state";
+import { setCurrentQuiz, setCurrentView } from "../state/state";
 import { quizTitleImages } from "../utils/quizTitlesIcons";
 import { selectQuiz } from "../utils/selectQuiz";
 
@@ -58,6 +53,9 @@ export function renderQuizSelection(): void {
       link.addEventListener("click", (event: Event) => {
         event.preventDefault();
         const quiz = selectQuiz(title);
+        if (quiz) {
+          window.history.pushState({}, "", `/${title.toLowerCase()}`);
+        }
         setCurrentQuiz(quiz);
         setCurrentView("quiz");
       });
