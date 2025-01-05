@@ -9,4 +9,11 @@ export default defineConfig({
       all: true, // Ensures full coverage reporting for all files
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: "./index.html",
+      },
+    },
+  },
 });

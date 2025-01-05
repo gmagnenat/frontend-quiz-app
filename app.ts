@@ -8,15 +8,22 @@ import { selectQuiz } from "./src/utils/selectQuiz";
 
 function loadQuizFromUrl(): void {
   const path = window.location.pathname.toLowerCase();
-  const quizName = path.substring(1).replace(/\b\w/g, (c) => c.toUpperCase());
+
+  if (path === "/" || path === "") return;
+
+  const quizName = path
+    .substring(1)
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 
   if (quizName) {
-    const quiz = selectQuiz(quizName.toUpperCase());
+    const quiz = selectQuiz(quizName);
     if (quiz) {
       setCurrentQuiz(quiz);
       setCurrentView("quiz");
     } else {
       console.error(`Quiz "${quizName}" not found.`);
+      window.history.pushState({}, "", "/");
     }
   }
 }
