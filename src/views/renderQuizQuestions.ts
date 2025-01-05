@@ -4,7 +4,6 @@ import {
   setCurrentScore,
   getCurrentScore,
 } from "../state/state";
-import { renderApp } from "./renderApp";
 
 export function renderQuizQuestions(currentIndex: number = 0): void {
   const quiz = getCurrentQuiz();
